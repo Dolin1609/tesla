@@ -88,3 +88,12 @@ header nav ul li a {
 #back-to-carousel:hover {
     background-color: #444;
 }
+.carousel {
+    display: flex;
+    width: 600%;
+    transition: transform 2s ease-in-out;
+}
+.carousel-item {
+    min-width: 100%;
+    text-align: center;
+}
