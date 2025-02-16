@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Cars</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        header nav ul li {
+            margin: 0 15px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .carousel-container {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            position: relative;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 2s ease-in-out;
+        }
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+        }
+        .carousel-item img {
+            width: 80%;
+            border-radius: 10px;
+        }
+        .details-btn {
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .details-btn:hover {
+            background: darkred;
+        }
+        .car-details {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .car-details img {
+            width: 60%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        #back-to-carousel {
+            padding: 10px 20px;
+            background: gray;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Models</a></li>
+                <li><a href="#">Performance</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item" id="model1">
+                    <img src="tesla_model_s.jpg" alt="Tesla Model S">
+                    <h2>Model S</h2>
+                    <button class="details-btn" onclick="showCarDetails('Model S', 'A luxurious electric sedan with unmatched performance and technology.', ['Top Speed: 200 mph', 'Range: 405 miles', 'Acceleration: 0-60 mph in 1.99 seconds'], 'tesla_model_s_interior.jpg')">View Details</button>
+                </div>
+                <div class="carousel-item" id="model2">
+                    <img src="tesla_model_3.jpg" alt="Tesla Model 3">
+                    <h2>Model 3</h2>
+                    <button class="details-btn" onclick="showCarDetails('Model 3', 'A high-performance electric sedan offering affordability and cutting-edge features.', ['Top Speed: 162 mph', 'Range: 358 miles', 'Acceleration: 0-60 mph in 3.1 seconds'], 'tesla_model_3_interior.jpg')">View Details</button>
+                </div>
+                <div class="carousel-item" id="model3">
+                    <img src="tesla_model_x.jpg" alt="Tesla Model X">
+                    <h2>Model X</h2>
+                    <button class="details-btn" onclick="showCarDetails('Model X', 'A premium electric SUV with Falcon Wing doors and impressive range.', ['Top Speed: 155 mph', 'Range: 348 miles', 'Acceleration: 0-60 mph in 2.6 seconds'], 'tesla_model_x_interior.jpg')">View Details</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="car-details" id="car-details">
+            <img id="car-image" src="" alt="Car Interior">
+            <h2 id="car-name"></h2>
+            <p id="car-description"></p>
+            <ul id="car-specs"></ul>
+            <button id="back-to-carousel" onclick="hideCarDetails()">Back to Models</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tesla, Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showCarDetails(name, description, specs, image) {
+            document.getElementById('car-name').innerText = name;
+            document.getElementById('car-description').innerText = description;
+            document.getElementById('car-image').src = image;
+            
+            let specsList = document.getElementById('car-specs');
+            specsList.innerHTML = '';
+            specs.forEach(spec => {
+                let li = document.createElement('li');
+                li.innerText = spec;
+                specsList.appendChild(li);
+            });
+            
+            document.querySelector('.carousel-container').style.display = 'none';
+            document.querySelector('.car-details').style.display = 'block';
+        }
+        function hideCarDetails() {
+            document.querySelector('.car-details').style.display = 'none';
+            document.querySelector('.carousel-container').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
